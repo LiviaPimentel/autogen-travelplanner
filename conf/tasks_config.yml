@@ -1,0 +1,108 @@
+generate_hotels_table:
+  inputs:
+    - user_input
+  task_template: |
+    You are given the data below:
+    # Given data:  {user_input}
+    Based on this data, you must obtain a table that contains a list of 
+    hotels including latitude, longitude, booking URL, hotel name, address, 
+    review score word, check-in, check-out, and All-Inclusive-Price.
+    # Output format: - Markdown table with hotel options: [TABLE]
+
+generate_hotels_text:
+  inputs: []
+  task_template: |
+    Use the markdown table with hotel options to generate a detailed and informative 
+    text about hotels in the specified region and dates given below. 
+    Highlight key aspects such as the review score, check-in/check-out times, 
+    and pricing. Group the hotels by their review scores, ensuring that those with 
+    the same score are discussed together. 
+    Instructions:
+    1) Output format: Begin the text with: '# Here are details about nice places to stay:'
+    2)Separate groups with markdown according to review scores (e.g. '# Hotels Rated Excellent')
+  objective: |
+    Generate a comprehensive and informative text about 
+    hotels available for a specified region and dates. The text should include
+    the following details for each hotel: review score, check-in and check-out times, 
+    and pricing. Group hotels by their review scores, presenting those with the same score together. 
+    Ensure the text is well-organized, easy to read, and helps readers compare their options 
+    effectively. Aim for a tone that is both engaging and professional.
+
+get_locations_tuple:
+  inputs: []
+  task_template: |
+    Use the columns Latitude, Longitude, hotel_name and booking URL from the markdown
+    table to form a list of tuples named locations. Output format (example):
+    # List of tuples 'locations':
+    locations= [(9.0, -84.0,"HOTEL NAME","HOTEL URL", "Good"), ...]
+
+generate_hotels_chart:
+  inputs:
+    - city_name
+    - country_option
+  task_template: |
+    Use the tuple of locations and the city and country names below to call the 
+    tool plot_hotels_on_map and plot hotel locations on a folium map. 
+    # city_name:{city_name}
+    # country_name: {country_option}
+    
+search_places:
+  inputs:
+    - city_name
+    - country_option
+    - additional_considerations
+  task_template: |
+    Use the search_tavily tool to look for must-see places in the city below:
+    City: {city_name}.\n
+    Country: {country_option}. \n
+    Consider the additional considerations below: \n
+    Considerations: {additional_considerations}.
+    Return a markdown table with the results.
+  objective: |
+    Generate compelling and detailed blog post about must-see places in a certain city, 
+    with links for sources of information.
+
+generate_table_places:
+  inputs: []
+  task_template: |
+    Based on the markdown table with results about must-see places, 
+    Generate a blog-post-like text about those places.
+    Provide links to the source of information using the url column from this table.
+    Only use information that is available in the table. Refrain 
+    from using data do be defined.
+    Begin with the markdown:
+    # The best Attraccions in the city for you:
+
+search_dining_places:
+  inputs:
+    - city_name
+    - country_option
+    - dining_options
+  task_template: |
+    Use the search_tavily tool to get information about
+    dining options in {city_name} , {country_option}.\n
+    Consider the Preferred dining options: {dining_options} . \n
+    Return a markdown table with the results containing columns:
+    Source (link, url),Dining Place,Additional Information.
+    Output format:
+    # Markdown table with dining options:
+    [TABLE]
+
+generate_dining_places_text:
+  inputs: []
+  task_template: |
+    Extract restaurants names from the markdown table with dining options,
+    generate a blog-post-like bullet points text in the format below. 
+    OBS: Try to extract Restaurant names from the column "Additional information":
+    Format:
+    ## [Restaurant name]
+    - Description: [Description of the restaurant]
+    - Source: [link, url]
+    OBS: When referring
+    to currency, always use USD. Also, always add the links (url)
+    for the sources of information. Begin your answer with: 
+    # Excellent Dining Options in the city
+  objective: |
+    Generate compelling and detailed blog-post-like
+    bullet points text about dining options in a certain city, with links for sources of
+    information. Begin with the markdown: # Excellent Dining Options in the city
