@@ -1,12 +1,12 @@
-pandas==2.2.2  
-pillow==10.4.0  # Image processing library (PIL module)
-streamlit==1.38.0  # Web app framework for machine learning and data science
+pandas==2.2.1
+pillow==10.3.0  # Image processing library (PIL module)
+streamlit==1.31.1  # Web app framework for machine learning and data science
 python-dotenv==1.0.1  # To load environment variables from .env file
 pyautogen==0.2.35  # For building agents and group chat functionalities
-openai==1.42.0  # To interact with OpenAI models
+openai==1.37.1  # To interact with OpenAI models
 asyncio==3.4.3  # Asynchronous I/O module, usually part of the Python standard library but left here if an external version is needed
-pyyaml==6.0.2 # YAML parsing and writing support
-requests==2.32.3  # For HTTP requests
+PyYAML==6.0.1 # YAML parsing and writing support
+requests==2.31.0  # For HTTP requests
 geopy==2.4.1  # Geocoding library
 typing-extensions==4.12.2  # For type annotations
 folium==0.17.0 
