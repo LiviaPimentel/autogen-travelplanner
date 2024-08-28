@@ -49,7 +49,7 @@ To run this app locally:
 
 1. **Clone the repository**:
     ```bash
-    git clone [https://github.com/yourusername/travel-plan-generator.git](https://github.com/LiviaPimentel/autogen-travelplanner.git)
+    git clone https://github.com/LiviaPimentel/autogen-travelplanner.git
     ```
 
 2. **Install dependencies**:
@@ -58,15 +58,15 @@ To run this app locally:
     ```
 3. **Create a .env file with the following**:
     ```bash
-    pip install -r requirements.txt
-    ```   
-
-4. **Run the app**:
-    ```bash
     OPENAI_BASE_URL=[]
     OPENAI_API_KEY=[]
     RAPID_API_KEY=[]
     TAVILY_API_KEY=[]
+    ```   
+
+4. **Run the app**:
+    ```bash
+    streamlit run app.py
     ```
     OBS:
    - To obtain a RAPID_API_KEY api key, checkout this link (there is a free version): [API by ApiDojo](https://rapidapi.com/apidojo/api/booking)
